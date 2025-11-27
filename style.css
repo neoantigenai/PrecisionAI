@@ -1,0 +1,552 @@
+/* Custom properties for a sleek, dark-themed, professional look */
+:root {
+  --primary-color: #0d1117; /* Very Dark Background (GitHub style) */
+  --secondary-color: #161b22; /* Slightly Lighter Background for sections */
+  --accent-color: #0ea5e9; /* Sky Blue for links/buttons */
+  --accent-soft: #38bdf8; /* Lighter accent */
+  --text-light: #f0f6fc; /* Off-White for body text */
+  --text-dark: #8b949e; /* Gray for subtle text/details */
+  --font-family: 'Inter', sans-serif;
+  --transition-speed: 0.5s;
+  --max-width: 1200px;
+}
+
+/* Global Reset and Base Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--primary-color);
+  padding-top: 80px; /* Space for the fixed header */
+}
+
+/* Base Utility Classes */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.section {
+  padding: 80px 0;
+  overflow: hidden; /* Important for animations */
+}
+
+/* Typography */
+h1, h2, h3 {
+  color: var(--text-light);
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; }
+h3 { font-size: 1.75rem; }
+
+p {
+  margin-bottom: 15px;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+a:hover {
+  color: var(--accent-soft);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all var(--transition-speed);
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+}
+
+.btn:hover {
+  background-color: var(--accent-soft);
+  color: var(--primary-color);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+  transform: translateY(-2px);
+}
+
+/* --- Header & Navigation --- */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--primary-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  height: 80px;
+}
+
+.logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.logo span {
+  color: var(--accent-color);
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+}
+
+.navbar li {
+  margin-left: 30px;
+}
+
+.navbar a {
+  color: var(--text-light);
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: var(--accent-soft);
+}
+
+/* Underline animation for professionalism */
+.navbar a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--accent-soft);
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: none; /* Hide on desktop */
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-toggle:hover {
+  color: var(--accent-color);
+}
+
+/* --- Hero Section Styling (Headers with Backgrounds) --- */
+
+.hero-section {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Dark overlay for contrast and professionalism */
+    background: linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(22, 27, 34, 0.7) 100%);
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+    padding: 40px 5%;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: var(--text-dark);
+}
+
+/* Individual Hero Backgrounds (Using gradient/noise patterns as placeholders) */
+
+/* Home Page: AI/Biotech Fusion */
+.hero-home {
+    /* background-image: url('https://placehold.co/1920x600/1e293b/38bdf8?text=Precision+AI+Intelligence'); */
+    background-image: url('https://www.mouser.com/blog/Portals/11/Cassar_Hottest%20Thing%20in%20AI_Theme%20Image.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Vaxi-DL: Deep Learning for Vaccines */
+.hero-vaxidl {
+    background-image: url('https://placehold.co/1920x600/1e293b/0ea5e9?text=Deep+Learning+Pipeline+Visualization');
+}
+
+/* Vax-Elan: Explainable AI */
+.hero-vaxelan {
+    background-image: url('https://placehold.co/1920x600/161b22/f0f6fc?text=Explainable+AI+Mechanism');
+}
+
+/* Neoantigen.ai: Personalized Immunotherapy */
+.hero-neoantigen {
+    background-image: url('https://placehold.co/1920x600/0d1117/38bdf8?text=Cancer+Targeting+Molecular+Structure');
+}
+
+/* Contact Page: Connection */
+.hero-contact {
+    background-image: url('https://placehold.co/1920x600/161b22/0ea5e9?text=Global+Collaboration+Network');
+}
+
+/* --- Section Content Styling --- */
+
+/* Feature Grid */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    border: 1px solid var(--secondary-color);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+/* Split Content (Text/Image blocks) */
+.split-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.split-content > div {
+    flex: 1;
+}
+
+.split-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.split-content.reverse {
+    flex-direction: row-reverse;
+}
+
+/* --- Contact Section / Form --- */
+.contact-form-container {
+    background-color: var(--secondary-color);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.contact-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    background-color: #0d1117;
+    color: var(--text-light);
+    border-radius: 6px;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.5);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.contact-form button {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#formStatus {
+    margin-top: 20px;
+    text-align: center;
+    color: #4ade80; /* Success green */
+    font-weight: 600;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--secondary-color);
+    padding: 60px 0 20px;
+    border-top: 5px solid var(--accent-color); /* Stronger separator */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-col {
+    flex: 1 1 200px;
+    min-width: 150px;
+}
+
+.footer-col h4 {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 2px;
+    width: 50px;
+    background-color: var(--accent-color);
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: var(--text-dark);
+    display: block;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--accent-soft);
+    padding-left: 5px;
+}
+
+.social-links a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin: 0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: var(--text-light);
+    transition: all 0.5s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+    transform: rotate(360deg) scale(1.1);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(139, 148, 158, 0.1);
+    font-size: 0.9rem;
+}
+
+.footer-bottom p {
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* --- Scroll Animation Styles (Opacity and Slide-Up) --- */
+
+.section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 0.8s ease-out;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Responsive Design --- */
+
+@media (max-width: 900px) {
+    header {
+        padding: 15px 5%;
+    }
+    
+    .navbar {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background-color: var(--secondary-color);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar.open {
+        display: flex;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        padding: 20px 0;
+        width: 100%;
+    }
+
+    .navbar li {
+        margin: 0;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .navbar li:last-child {
+        border-bottom: none;
+    }
+
+    .navbar a {
+        display: block;
+        padding: 15px 0;
+        font-size: 1.1rem;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    
+    .hero-section h1 {
+        font-size: 2.8rem;
+    }
+
+    .split-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .split-content.reverse {
+        flex-direction: column;
+    }
+
+    .split-content-image {
+        order: -1; /* Move image above text on mobile for reverse layout */
+        margin-bottom: 30px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-col {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    
+    .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-col ul {
+        padding-left: 0;
+    }
+    
+    .social-links {
+        justify-content: center;
+        display: flex;
+    }
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Precision AI</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo"><a href="index.html">Precision<span>AI</span></a></div>
+    <nav class="navbar" id="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="vaxidl.html">Vaxi-DL</a></li>
+        <li><a href="vaxelan.html">Vax-Elan</a></li>
+        <li><a href="neoantigen.html">Neoantigen.ai</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </header>
+
+  <!-- Hero/Title Section -->
+  <section class="hero-section hero-contact">
+    <div class="container">
+      <h1>Connect with Precision AI</h1>
+      <p>Whether you're a pharmaceutical partner, a researcher, or a potential team member, we look forward to hearing from you.</p>
+    </div>
+  </section>
+
+  <!-- Contact Details and Form Section -->
+  <section class="section">
+    <div class="container contact-section">
+      <div style="display: flex; flex-wrap: wrap; gap: 40px;">
+        <!-- Contact Information Block -->
+        <div style="flex: 1; min-width: 300px;">
+            <h2 style="font-size: 2rem;">Get in Touch</h2>
+            <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 30px;">Our team is ready to discuss your research needs and explore partnership opportunities.</p>
+            
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 20px;">
+                    <i class="fas fa-map-marker-alt" style="color: var(--accent-color); margin-right: 15px;"></i>
+                    <span style="color: var(--text-light);">Global Headquarters</span><br>
+                    <span style="margin-left: 30px; color: var(--text-dark);">123 AI Innovation Drive, Boston, MA 02111, USA</span>
+                </li>
+                <li style="margin-bottom: 20px;">
+                    <i class="fas fa-envelope" style="color: var(--accent-color); margin-right: 15px;"></i>
+                    <span style="color: var(--text-light);">Email Us</span><br>
+                    <a href="mailto:info@precision.ai" style="margin-left: 30px;">info@precision.ai</a>
+                </li>
+                <li style="margin-bottom: 20px;">
+                    <i class="fas fa-phone" style="color: var(--accent-color); margin-right: 15px;"></i>
+                    <span style="color: var(--text-light);">Call Sales</span><br>
+                    <span style="margin-left: 30px; color: var(--text-dark);">(555) 123-4567</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Contact Form Block -->
+        <div class="contact-form-container" style="flex: 2; min-width: 350px;">
+            <h3 style="margin-top: 0; color: var(--text-light);">Send Us a Message</h3>
+            <form class="contact-form">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="Full Name">
+                
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required placeholder="name@company.com">
+                
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required placeholder="e.g., Partnership Inquiry, Request Demo">
+                
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Your detailed message..."></textarea>
+                
+                <button type="submit" class="btn">Send Request</button>
+            </form>
+            <p id="formStatus"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (Consistent structure) -->
+  <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo"><a href="index.html">Precision<span>AI</span></a></div>
+                <p style="margin-top: 10px; max-width: 200px;">Driving the next wave of genomic and immunological discovery.</p>
+                <div class="social-links" style="margin-top: 20px;">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="vaxidl.html">Vaxi-DL</a></li>
+                    <li><a href="vaxelan.html">Vax-Elan</a></li>
+                    <li><a href="neoantigen.html">Neoantigen.ai</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#platform">Our Platform</a></li>
+                    <li><a href="contact.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Request a Demo</a></li>
+                    <li><a href="mailto:info@precision.ai">info@precision.ai</a></li>
+                    <li>(555) 123-4567</li>
+                    <li>Boston, MA</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Precision AI. All rights reserved. | <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+        </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
