@@ -1,36 +1,156 @@
-// Toggle mobile navigation visibility
-const navToggle = document.getElementById('nav-toggle');
-const navbar = document.getElementById('navbar');
+// Initialize navigation behaviors (exposed as initNav so injected nav can be initialized)
+function initNav() {
+  const navToggle = document.getElementById('nav-toggle');
+  const navbar = document.getElementById('navbar');
 
-if (navToggle && navbar) {
+  // Mobile toggle
+  if (navToggle && navbar) {
     navToggle.addEventListener('click', () => {
-        navbar.classList.toggle('open');
-        // Change icon based on state
-        const icon = navToggle.querySelector('i');
+      navbar.classList.toggle('open');
+      // Change icon based on state
+      const icon = navToggle.querySelector('i');
+      if (icon) {
         if (navbar.classList.contains('open')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times'); // Use X icon when open
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times'); // Use X icon when open
         } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars'); // Use bars icon when closed
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars'); // Use bars icon when closed
         }
+      }
     });
-}
+  }
 
-// Close mobile nav when clicking a link
-if (navbar) {
-  navbar.addEventListener("click", (e) => {
-    // Check if it's a link and if the mobile menu is open
-    if (e.target.tagName.toLowerCase() === "a" && navbar.classList.contains('open')) {
-      // Small delay to allow navigation before closing
-      setTimeout(() => {
-        navbar.classList.remove("open");
-        navToggle.querySelector('i').classList.remove('fa-times');
-        navToggle.querySelector('i').classList.add('fa-bars');
-      }, 100); 
+  // Close mobile nav when clicking a link
+  if (navbar) {
+    navbar.addEventListener('click', (e) => {
+      const target = e.target.closest('a');
+      if (target && navbar.classList.contains('open')) {
+        // Small delay to allow navigation before closing
+        setTimeout(() => {
+          navbar.classList.remove('open');
+          const icon = document.querySelector('#nav-toggle i');
+          if (icon) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        }, 100);
+      }
+    });
+  }
+
+  // Dropdown toggles (click to open/close) - use separate button so main link navigates
+  const dropdownToggleBtns = document.querySelectorAll('.dropdown-toggle-btn');
+  dropdownToggleBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const parent = btn.closest('.dropdown');
+      if (!parent) return;
+      const menu = parent.querySelector('.dropdown-menu');
+      const link = parent.querySelector('.dropdown-link');
+      const isOpen = menu && menu.classList.contains('show');
+
+      // Close other open dropdowns
+      document.querySelectorAll('.dropdown-menu.show').forEach(m => {
+        if (m !== menu) {
+          m.classList.remove('show');
+          const t = m.closest('.dropdown')?.querySelector('.dropdown-toggle-btn');
+          if (t) {
+            t.classList.remove('open');
+            t.setAttribute('aria-expanded', 'false');
+          }
+          const pl = m.closest('.dropdown')?.querySelector('.dropdown-link');
+          if (pl) pl.classList.remove('active');
+        }
+      });
+
+      if (menu) menu.classList.toggle('show', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      if (link) link.classList.toggle('active', !isOpen);
+    });
+  });
+
+  // Hover-to-open behavior for desktop: open submenu on hover and sync ARIA/classes
+  const dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(drop => {
+    const btn = drop.querySelector('.dropdown-toggle-btn');
+    const menu = drop.querySelector('.dropdown-menu');
+    const link = drop.querySelector('.dropdown-link');
+
+    drop.addEventListener('mouseenter', () => {
+      if (window.innerWidth <= 768) return;
+      if (menu) menu.classList.add('show');
+      if (btn) { btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      if (link) link.classList.add('active');
+    });
+    drop.addEventListener('mouseleave', () => {
+      if (window.innerWidth <= 768) return;
+      if (menu) menu.classList.remove('show');
+      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+      if (link) link.classList.remove('active');
+    });
+
+    // Keyboard support: open on focus, close on focusout if focus leaves the dropdown
+    drop.addEventListener('focusin', () => {
+      if (window.innerWidth <= 768) return;
+      if (menu) menu.classList.add('show');
+      if (btn) { btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      if (link) link.classList.add('active');
+    });
+    drop.addEventListener('focusout', (e) => {
+      if (window.innerWidth <= 768) return;
+      if (drop.contains(e.relatedTarget)) return;
+      if (menu) menu.classList.remove('show');
+      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+      if (link) link.classList.remove('active');
+    });
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+        menu.classList.remove('show');
+        const t = menu.closest('.dropdown')?.querySelector('.dropdown-toggle');
+        if (t) {
+          t.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+  });
+
+  // Keyboard support: Esc to close menus
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+        menu.classList.remove('show');
+        const t = menu.closest('.dropdown')?.querySelector('.dropdown-toggle');
+        if (t) {
+          t.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+        }
+      });
+      const navbarEl = document.getElementById('navbar');
+      if (navbarEl && navbarEl.classList.contains('open')) {
+        navbarEl.classList.remove('open');
+        const icon = document.querySelector('#nav-toggle i');
+        if (icon) {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      }
     }
   });
 }
+
+// Expose globally so include-navbar.js can call it after injecting the markup
+window.initNav = initNav;
+
+// Initialize on DOMContentLoaded in case navbar is already present in the DOM
+document.addEventListener('DOMContentLoaded', () => {
+  initNav();
+});
 
 // --- Scroll-based Section Visibility Animation ---
 

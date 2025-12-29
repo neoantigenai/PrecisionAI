@@ -166,6 +166,82 @@ header {
   color: var(--accent-color);
 }
 
+/* Dropdown menu styling */
+.dropdown { position: relative; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--secondary-color);
+  padding: 8px 0;
+  margin-top: 6px; /* small visual gap beneath the parent link */
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  min-width: 180px;
+  list-style: none;
+  z-index: 1100;
+  pointer-events: auto;
+}
+
+.dropdown-menu.show { display: block; }
+
+/* On desktop, show dropdown on hover or focus and animate the toggle arrow */
+@media (min-width: 769px) {
+  /* Hide submenu by default on desktop; only reveal on hover/focus */
+  .dropdown-menu {
+    display: none !important;
+  }
+
+  /* Open submenu when hovering or focusing the parent dropdown */
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu {
+    display: block !important;
+  }
+
+  /* Hide the toggle button on desktop (click-to-open is for mobile only) */
+  .dropdown-toggle-btn {
+    display: none;
+  }
+
+  /* Highlight the parent link on hover/focus */
+  .dropdown:hover .dropdown-link,
+  .dropdown:focus-within .dropdown-link {
+    color: var(--accent-soft);
+  }
+
+  .dropdown:hover .dropdown-toggle-btn,
+  .dropdown:focus-within .dropdown-toggle-btn {
+    color: var(--accent-color);
+  }
+
+  /* Rotate the arrow when open (CSS-only rotation for hover/focus states) */
+  .dropdown:hover .dropdown-toggle-btn .dropdown-arrow,
+  .dropdown:focus-within .dropdown-toggle-btn .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+}
+
+.dropdown-menu li { margin: 0; }
+.dropdown-menu a { display: block; padding: 10px 18px; color: var(--text-light); }
+.dropdown-menu a:hover { background: rgba(14,165,233,0.06); color: var(--accent-soft); }
+
+.dropdown-toggle-btn { background: none; border: none; color: var(--text-light); margin-left: 8px; cursor: pointer; padding: 6px; border-radius: 6px; display: inline-flex; align-items: center; }
+.dropdown-toggle-btn:hover { color: var(--accent-color); }
+.dropdown-toggle-btn .dropdown-arrow { transition: transform 0.2s ease; }
+.dropdown-toggle-btn.open .dropdown-arrow { transform: rotate(180deg); }
+
+/* Responsive: stack nav on small screens */
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .navbar { position: fixed; top: 80px; left: 0; right: 0; background: var(--primary-color); padding: 20px 5%; transition: transform 0.25s ease; transform: translateY(-100%); }
+  .navbar.open { transform: translateY(0); }
+  .navbar ul { flex-direction: column; gap: 10px; }
+  .navbar li { margin-left: 0; }
+  .dropdown-menu { position: static; box-shadow: none; padding-left: 10px; }
+  .dropdown-menu.show { display: block; }
+}
+
 /* --- Hero Section Styling (Headers with Backgrounds) --- */
 
 .hero-section {

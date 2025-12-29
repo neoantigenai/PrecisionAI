@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apply Now - Precision AI</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .application-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin: 50px 0;
+    }
+
+    .application-option {
+      background: linear-gradient(135deg, rgba(22, 27, 34, 0.8), rgba(13, 17, 23, 0.9));
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(14, 165, 233, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .application-option:hover {
+      border-color: rgba(14, 165, 233, 0.4);
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+    }
+
+    .application-option h3 {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .application-option i {
+      color: var(--accent-color);
+      margin-right: 15px;
+      font-size: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      background-color: rgba(13, 17, 23, 0.8);
+      color: var(--text-light);
+      border: 1px solid rgba(14, 165, 233, 0.2);
+      border-radius: 8px;
+      font-family: var(--font-family);
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .file-upload-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .file-upload-wrapper input[type="file"] {
+      display: none;
+    }
+
+    .file-upload-label {
+      display: block;
+      padding: 20px;
+      background-color: rgba(14, 165, 233, 0.1);
+      border: 2px dashed rgba(14, 165, 233, 0.4);
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-light);
+    }
+
+    .file-upload-label:hover {
+      border-color: var(--accent-color);
+      background-color: rgba(14, 165, 233, 0.15);
+    }
+
+    .file-upload-label i {
+      font-size: 2rem;
+      color: var(--accent-color);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .form-status {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      display: none;
+      background-color: rgba(14, 165, 233, 0.1);
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 900px) {
+      .application-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-navbar"></div>
+
+  <!-- Hero/Title Section -->
+  <section class="hero-section hero-apply">
+    <div class="container">
+      <h1>Submit Your Application</h1>
+      <p>Join the Precision AI team and help us revolutionize immunotherapy and personalized medicine.</p>
+    </div>
+  </section>
+
+  <!-- Application Options Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 50px;">Choose Your Application Method</h2>
+      
+      <div class="application-container">
+        <!-- Manual Form Option -->
+        <div class="application-option">
+          <h3><i class="fas fa-edit"></i> Fill Application Form</h3>
+          <p style="color: var(--text-dark); margin-bottom: 25px;">Provide your details and information directly through our form.</p>
+          <form id="manualForm" class="contact-form">
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="john@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+91 8882904944">
+            </div>
+
+            <div class="form-group">
+              <label for="position">Position Interested In *</label>
+              <select id="position" name="position" required>
+                <option value="">Select a position</option>
+                <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+                <option value="Computational Biologist">Computational Biologist</option>
+                <option value="Business Development Manager">Business Development Manager</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="experience">Years of Experience *</label>
+              <input type="number" id="experience" name="experience" required placeholder="5" min="0">
+            </div>
+
+            <div class="form-group">
+              <label for="education">Educational Background *</label>
+              <input type="text" id="education" name="education" required placeholder="e.g., B.S. in Computer Science">
+            </div>
+
+            <div class="form-group">
+              <label for="linkedIn">LinkedIn Profile (Optional)</label>
+              <input type="url" id="linkedIn" name="linkedIn" placeholder="https://linkedin.com/in/yourprofile">
+            </div>
+
+            <div class="form-group">
+              <label for="coverLetter">Cover Letter / Why Join Us? *</label>
+              <textarea id="coverLetter" name="coverLetter" required placeholder="Tell us why you're interested in joining Precision AI..."></textarea>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Submit Application</button>
+            <div class="form-status" id="formStatus1"></div>
+          </form>
+        </div>
+
+        <!-- Resume Upload Option -->
+        <div class="application-option">
+          <h3><i class="fas fa-file-upload"></i> Upload Resume</h3>
+          <p style="color: var(--text-dark); margin-bottom: 25px;">Upload your resume and we'll reach out to you directly.</p>
+          <form id="uploadForm" class="contact-form">
+            <div class="form-group">
+              <label for="fullNameUpload">Full Name *</label>
+              <input type="text" id="fullNameUpload" name="fullName" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+              <label for="emailUpload">Email Address *</label>
+              <input type="email" id="emailUpload" name="email" required placeholder="john@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phoneUpload">Phone Number *</label>
+              <input type="tel" id="phoneUpload" name="phone" required placeholder="+91 8882904944">
+            </div>
+
+            <div class="form-group">
+              <label for="positionUpload">Position Interested In *</label>
+              <select id="positionUpload" name="position" required>
+                <option value="">Select a position</option>
+                <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+                <option value="Computational Biologist">Computational Biologist</option>
+                <option value="Business Development Manager">Business Development Manager</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div class="file-upload-wrapper">
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                <label for="resume" class="file-upload-label">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <div>Click to upload or drag and drop</div>
+                  <small style="color: var(--text-dark); display: block; margin-top: 5px;">PDF, DOC, or DOCX (Max 5MB)</small>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="linkedInUpload">LinkedIn Profile (Optional)</label>
+              <input type="url" id="linkedInUpload" name="linkedIn" placeholder="https://linkedin.com/in/yourprofile">
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Submit Resume</button>
+            <div class="form-status" id="formStatus2"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="logo"><a href="index.html">Precision<span>AI</span></a></div>
+          <p style="margin-top: 10px; max-width: 200px;">Driving the next wave of genomic and immunological discovery.</p>
+          <div class="social-links" style="margin-top: 20px;">
+            <a href="https://www.linkedin.com/in/krawal/?originalSubdomain=in" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/HBytesByDrKamal" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="vaxidl.html">Vaxi-DL</a></li>
+            <li><a href="vaxelan.html">Vax-Elan</a></li>
+            <li><a href="neoantigen.html">Neoantigen.ai</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#platform">Our Platform</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="contact.html">Request a Demo</a></li>
+            <li><a href="mailto:precisionai001@gmail.com">precisionai001@gmail.com</a></li>
+            <li>8882904944</li>
+            <li>Noida, Uttar Pradesh 201303</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Precision AI. All rights reserved. | <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+  <script src="include-navbar.js" defer></script>
+  <script>
+    // Handle Manual Form Submission
+    const manualForm = document.getElementById('manualForm');
+    const formStatus1 = document.getElementById('formStatus1');
+
+    if (manualForm && formStatus1) {
+      manualForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        formStatus1.style.display = 'block';
+        formStatus1.style.color = 'var(--accent-color)';
+        formStatus1.textContent = 'Submitting your application...';
+
+        setTimeout(() => {
+          formStatus1.style.color = '#4ade80';
+          formStatus1.textContent = '✓ Thank you! Your application has been received. We\'ll review your details and contact you soon.';
+          manualForm.reset();
+          
+          setTimeout(() => {
+            formStatus1.style.display = 'none';
+          }, 5000);
+        }, 1500);
+      });
+    }
+
+    // Handle Resume Upload Form Submission
+    const uploadForm = document.getElementById('uploadForm');
+    const formStatus2 = document.getElementById('formStatus2');
+
+    if (uploadForm && formStatus2) {
+      uploadForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        formStatus2.style.display = 'block';
+        formStatus2.style.color = 'var(--accent-color)';
+        formStatus2.textContent = 'Uploading your resume...';
+
+        setTimeout(() => {
+          formStatus2.style.color = '#4ade80';
+          formStatus2.textContent = '✓ Success! Your resume has been uploaded. Our team will review it and get back to you within 48 hours.';
+          uploadForm.reset();
+          
+          setTimeout(() => {
+            formStatus2.style.display = 'none';
+          }, 5000);
+        }, 1500);
+      });
+    }
+
+    // Drag and drop functionality for file upload
+    const fileInput = document.getElementById('resume');
+    const fileLabel = document.querySelector('label[for="resume"]');
+
+    if (fileLabel) {
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        fileLabel.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        fileLabel.addEventListener(eventName, () => {
+          fileLabel.style.borderColor = 'var(--accent-color)';
+          fileLabel.style.backgroundColor = 'rgba(14, 165, 233, 0.2)';
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        fileLabel.addEventListener(eventName, () => {
+          fileLabel.style.borderColor = 'rgba(14, 165, 233, 0.4)';
+          fileLabel.style.backgroundColor = 'rgba(14, 165, 233, 0.1)';
+        });
+      });
+
+      fileLabel.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        fileInput.files = files;
+      });
+    }
+  </script>
+
+
+</body>
+</html>
